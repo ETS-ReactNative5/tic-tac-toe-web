@@ -1,0 +1,23 @@
+
+@media(max-width: 1166px){
+
+}
+
+@media(max-width: 992px){
+    .chart-box{
+        margin-bottom: 30px;
+      }
+      .border-b{
+          display: block;
+      }
+      .header-bg{
+          display: none;
+      }
+      .recordlist-bg{
+        padding-top: 0px;
+      }
+      .heading-dashboard{
+          margin-top: 30px;
+      }
+}
+
