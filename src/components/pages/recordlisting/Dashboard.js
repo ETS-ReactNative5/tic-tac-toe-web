@@ -1,10 +1,57 @@
-import React, {useEffect,useRef} from "react";
+import React, {useEffect,useRef,useState} from "react";
 import Plot from 'react-plotly.js';
 import MaterialTable from "material-table";
 import Header from "../Header";
 
 
 const Dashboard = ()=>{
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        ShowHistory();
+        
+        
+
+    }, []);
+
+    const ShowHistory = () => {
+      
+        fetch("http://localhost:3001/api/history/list",
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+            }
+        ).then((response) => {
+            if (response.status == 200) {
+                response.json().then((resp) => {
+                    console.warn("result", resp);
+                    let _temp = [];
+                    resp.result.map((v, i) => {
+                        _temp.push({
+                            username: v.usersname,
+                            email: v.histroyemail,
+                            Date: new Date(v.date).toLocaleString(),
+                            Result: v.result,
+                            Action: <ul className="action-list">
+                            <li><a href="#">Delete</a></li>
+                          
+                        </ul>
+                        })
+                    })
+                    setData(_temp);
+
+
+                });
+            }
+            
+
+
+        })
+    }
 
     return(
         <div className="recordlist-bg">
@@ -78,30 +125,14 @@ const Dashboard = ()=>{
                                 
                                 { title: "User name", field: "username" },
                                 { title: "Date", field: "date" },
-                                { title: "Win", field: "win" },
-                                { title: "Loss", field: "loss" }, 
+                                { title: "Email", field: "email" },
+                                { title: "Result", field: "Result" },
                                 { title: "Action", field: "Action" },
                                 
                                
                             ]}
-                            data={[
-                                { 
-                                    username: "Shayam",
-                                    date: "4-4-2022",
-                                    win: "won",
-                                    loss: "loss",
-                                    Action: <ul className="action-list">
-                                    <li><a href="#" >delete</a></li>
-                                    
-                                </ul>
-                                  
-                                },
-
-                                
-                               
-                                
-                            ]}
-                            title="Courses Details"
+                            data={data}
+                           
                         />
                     </div>
             </div>

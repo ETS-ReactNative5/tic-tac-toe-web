@@ -6,13 +6,13 @@ class Game extends Component {
   constructor() {
     super();
     this.state = {
-      winner: undefined
+      result: "",
+      winner: undefined,
+      
+      
       
     };
-    this.histroyState ={
-      won: "",
-      loss: ""
-    }
+    
     this.gameState = {
         turn: 'X',
         gameLocked: false,
@@ -23,17 +23,42 @@ class Game extends Component {
   }
 
   componentDidMount() {
-   
-    // savedata(){
-     
-    // }
     
    
+  }
+
+
+  savadata(){
+    let url = "http://localhost:3001/api/histryplayer";
+    let result = this.state.result;
+    const email = JSON.parse(localStorage.getItem('users')).email;
+    console.log(email);
+   
+    fetch(url,{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body:JSON.stringify({result, email})
+    }).then((response) => {
+      if (response.status == 200) {
+          response.JSON().then((resp) => {
+              console.log("results", resp);
+              
+          });
+      }
+      else {
+          alert("network error")
+      }
+
+  })
   }
 
  
 
   clicked(box) {
+    
     if(this.gameState.gameEnded || this.gameState.gameLocked) return;
 
     if(this.gameState.board[box.dataset.square] == '') {
@@ -48,26 +73,27 @@ class Game extends Component {
     console.log(this.gameState.totalMoves);
 
     var result = this.checkWinner();
-
+    
     if(result == 'X') {
       this.gameState.gameEnded = true;
-      
+     
       this.setState({
-        winner: 'X',
-        winnerLine: 'You Won'
+        result: 'X',
+        result: 'You Won'
       });
     }
      else if(result == 'O') {
       this.gameState.gameEnded = true;
+      
       this.setState({
-        winner: 'O',
-        winnerLine: 'You lost'
+        result: 'O',
+        result: 'You Lost'
       });
     } else if(result == 'draw') {
       this.gameState.gameEnded = true;
       this.setState({
         winner: 'draw',
-        winnerLine: 'Match is drawn'
+        winnerLine2: 'Match is drawn'
       })
     }
     
@@ -105,8 +131,10 @@ class Game extends Component {
         <Header />
       <div id="game">
         
-          <div id="status">{this.state.winnerLine}</div>
-
+          <input id="status" value={this.state.result} name="result" onChange={(data)=>{this.setState({name:data.target.value})}} />
+          <div id="status">{this.state.winnerLine2}</div>
+          
+          
           <div id="head">
               World's best tic tac toe AI
           </div>
@@ -122,6 +150,7 @@ class Game extends Component {
               <div className="square" data-square="8"></div>
           </div>
          
+          <button className="save-game" onClick={()=>{this.savadata()}}>Save Game</button>
       </div>      
       </div>
     );

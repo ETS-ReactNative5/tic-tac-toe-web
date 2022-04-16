@@ -22,7 +22,7 @@ const Register = () => {
     }
 
     useEffect(()=>{
-        const auth = localStorage.getItem('user');
+        const auth = localStorage.getItem('users');
         if(auth){
             navigate("/dashboard");
         }
@@ -43,12 +43,12 @@ const Register = () => {
                 'Content-Type': 'application/json',
 
             },
-            body: JSON.stringify(data)
+            body:JSON.stringify(data)
         }).then((response) => {
             if (response.status == 200) {
                 response.json().then((resp) => {
-                    console.log("results", resp);
-                    localStorage.setItem("user",JSON.stringify(resp))
+                    // console.log("results", resp);
+                    localStorage.setItem("users",JSON.stringify(resp))
                     navigate("/dashboard");
                 });
             }

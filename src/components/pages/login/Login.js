@@ -11,7 +11,7 @@ const Login = ()=>{
     const navigate = useNavigate();
 
     useEffect(()=>{
-        const auth = localStorage.getItem('user');
+        const auth = localStorage.getItem('users');
         if(auth){
             navigate("/dashboard");
         }
@@ -34,7 +34,7 @@ const Login = ()=>{
                 if (response.status == 200) {
                     response.json().then((resp) => {
                         console.log("results", resp);
-                        localStorage.setItem("user",JSON.stringify(resp))
+                        localStorage.setItem("users",JSON.stringify(resp))
                         navigate("/");
                     });
                 }

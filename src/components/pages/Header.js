@@ -43,7 +43,7 @@ function changePickupStoreMenu(){
 }
 })
 
-const auth = localStorage.getItem('user');
+const auth = localStorage.getItem('users');
 
 const logOut = ()=>{
   localStorage.clear();
@@ -107,7 +107,6 @@ const logOut = ()=>{
           <div className="menu slide-menu-right menu-list-wrp">
               <button class="close-menu"><img src={crosss} className="img-close" /></button>
             <ul className="menu-list2">
-  
                 <li><a href="#" className="connect-wa-btn close-menu">Register</a></li>
                 <li><a href="#" className="connect-wa-btn close-menu">Login</a></li>
             </ul>

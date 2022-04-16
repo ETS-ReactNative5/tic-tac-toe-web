@@ -3,6 +3,8 @@ import React, { Component,useState,useEffect } from 'react';
 import Header from '../Header';
 
 const GameStart = () => {
+
+
   
     return(
         <div>
