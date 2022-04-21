@@ -125,7 +125,7 @@ const Dashboard = ()=>{
                             columns={[
                                 
                                 { title: "User name", field: "username" },
-                                { title: "Date", field: "date" },
+                                { title: "Date", field: "Date" },
                                 { title: "Email", field: "email" },
                                 { title: "Result", field: "Result" },
                                 { title: "Action", field: "Action" },
