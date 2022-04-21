@@ -1,6 +1,7 @@
 import React, { useEffect, useRef,useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import validator from 'validator'
+import { API } from "../../../Config";
 
 
 const Register = () => {
@@ -37,7 +38,7 @@ const Register = () => {
         data['password'] = password.current.value;
 
 
-        fetch("http://localhost:3001/api/createuser", {
+        fetch(API+"/createuser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

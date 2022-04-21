@@ -2,6 +2,7 @@ import React, {useEffect,useRef,useState} from "react";
 import Plot from 'react-plotly.js';
 import MaterialTable from "material-table";
 import Header from "../Header";
+import { API } from "../../../Config";
 
 
 const Dashboard = ()=>{
@@ -17,7 +18,7 @@ const Dashboard = ()=>{
 
     const ShowHistory = () => {
       
-        fetch("http://localhost:3001/api/history/list",
+        fetch(API+"/history/list",
             {
                 method: 'GET',
                 headers: {

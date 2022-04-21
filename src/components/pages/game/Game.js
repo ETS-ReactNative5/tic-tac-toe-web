@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { API } from '../../../Config';
 import Header from "../Header";
 
 class Game extends Component {
@@ -29,7 +30,7 @@ class Game extends Component {
 
 
   savadata(){
-    let url = "http://localhost:3001/api/histryplayer";
+    let url = API+"/histryplayer";
     let result = this.state.result;
     const email = JSON.parse(localStorage.getItem('users')).email;
     console.log(email);

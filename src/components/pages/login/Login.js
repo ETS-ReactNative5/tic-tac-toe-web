@@ -1,5 +1,6 @@
 import React, {useEffect,useRef} from "react";
 import { useNavigate } from 'react-router-dom';
+import { API } from "../../../Config";
 
 
 
@@ -23,7 +24,7 @@ const Login = ()=>{
         data['password'] = password.current.value;
        
     
-        fetch("http://localhost:3001/api/login", {
+        fetch(API+"/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ const Login = ()=>{
                         <input type="email" placeholder="Enter Email" ref={email} />
                     </li>
                     <li>
-                        <input placeholder="Enter Password" ref={password} />
+                        <input type="password" placeholder="Enter Password" ref={password} />
                     </li>
                 </ul>
                 <div className="register-btn">
