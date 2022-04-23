@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import Header from "../Header";
 
 class Game extends Component {
 
   constructor() {
     super();
+    
     this.state = {
       result: "",
       winner: undefined,
@@ -29,10 +31,12 @@ class Game extends Component {
 
 
   savadata(){
+  
     let url = "http://localhost:3001/api/histryplayer";
     let result = this.state.result;
     const email = JSON.parse(localStorage.getItem('users')).email;
-    console.log(email);
+    const name = JSON.parse(localStorage.getItem('users')).name;
+    const uid = JSON.parse(localStorage.getItem('users')).id;
    
     fetch(url,{
       method: "POST",
@@ -40,13 +44,11 @@ class Game extends Component {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body:JSON.stringify({result, email})
+      body:JSON.stringify({result, email,name,uid})
     }).then((response) => {
       if (response.status == 200) {
-          response.JSON().then((resp) => {
-              console.log("results", resp);
-              
-          });
+          window.location.href = "/dashboard";
+          // console.log("nasim")
       }
       else {
           alert("network error")

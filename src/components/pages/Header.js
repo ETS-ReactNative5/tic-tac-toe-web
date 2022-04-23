@@ -71,7 +71,7 @@ const logOut = ()=>{
                   </ul>
                    <div className="connect-wallet">
                      {
-                       auth? <Link to="/" onClick={logOut} className="connect-wa-btn mrl-btn">Logout</Link> : <div><Link to="/register" className="connect-wa-btn mrl-btn">Register</Link>
+                       auth? <Link to="/login" onClick={logOut} className="connect-wa-btn mrl-btn">Logout</Link> : <div><Link to="/register" className="connect-wa-btn mrl-btn">Register</Link>
                        <Link to="/login" className="connect-wa-btn mrl-btn">Login</Link></div>
                      }
 

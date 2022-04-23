@@ -22,6 +22,7 @@ const Register = () => {
     }
 
     useEffect(()=>{
+        
         const auth = localStorage.getItem('users');
         if(auth){
             navigate("/dashboard");
@@ -35,6 +36,7 @@ const Register = () => {
         data['name'] = name.current.value;
         data['email'] = email.current.value;
         data['password'] = password.current.value;
+      
 
 
         fetch("http://localhost:3001/api/createuser", {
@@ -84,6 +86,7 @@ const Register = () => {
                     </ul>
                     <div className="register-btn">
                         <button onClick={saveRegister}>Register</button>
+                        <p className="login-p">You have account <a href="/login">please login</a></p>
                     </div>
                 </div>
             </div>

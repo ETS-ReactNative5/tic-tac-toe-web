@@ -651,3 +651,162 @@ hr {
   box-shadow: 0px 0px 8px #ffffff8f;
   margin-top: 40px;
 }
+.save-game:hover{
+  transform: translateY(-5px);
+  transition: .5s;
+}
+
+.login-p{
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+}
+.login-p > a{
+  text-decoration: none;
+  color: #ffa210;
+  transition: 0.5s;
+}
+.login-p > a:hover{
+  color: #fec15f;
+  transition: 0.5s;
+  text-decoration: underline;
+}
+.forgot-password > a{
+  color: #ffffff85;
+  display: inline-block;
+  font-weight: 300;
+  font-size: 13px;
+  margin-top: 6px;
+}
+.forgot-password > a:hover{
+  color: #ffffffc2;
+}
+/* reset password page css open here */
+.wrp-reset-password{
+  width: 38%;
+  padding: 20px;
+  box-shadow: 1px 1px 8px #0000002b;
+  margin: auto;
+  border-radius: 6px;
+  background-color: #f7f5f5;
+  margin-top: 100px;
+}
+.reset-input-list{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+.reset-input-list > li{
+  margin-top: 20px;
+}
+.reset-input-list > li > input{
+  display: inline-block;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #000;
+  background-color: #43393700;
+  outline: none;
+  border: 1px solid #7C88C3;
+  box-shadow: 0px 0px 8px 1px #ffffff40;
+}
+.submit-btn-reset{
+  text-align: center; 
+}
+.submit-btn-reset > button{
+  display: inline-block;
+  padding: 6px 20px;
+  color: #ffa210;
+  background-color: #000;
+  outline: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  margin-top: 10px;
+  transition: 0.5s;
+  text-transform: uppercase;
+  box-shadow: 0px 0px 8px 1px #ffffffb0;
+}
+.submit-btn-reset > button:hover{
+  transform: translateY(-5px);
+  transition: 0.5s;
+}
+.match-pass{
+  color: #000;
+  font-size: 14px;
+}
+
+/* reset password page css closed here */
+
+
+/* forgot password popop css open here */
+.wrp-label{
+  text-align: left;
+}
+.wrp-label > label{
+  display: block;
+  font-size: 15px;
+  color: #000;
+  margin: 0px;
+  margin-bottom: 6px;
+}
+.wrp-label > input{
+  display: inline-block;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #000;
+  background-color: #43393700;
+  outline: none;
+  border: 1px solid #00000052;
+  box-shadow: 0px 0px 8px 1px #ffffff40;
+}
+.wrp-label > input::placeholder{
+  color: #000;
+}
+.checkbox-c > p{
+  font-size: 13px;
+  color: #b0b0b0;
+  margin: 4px 0px 0px 8px;
+}
+
+.checkbox-c > p > span{
+  color: #b0b0b0;
+}
+.mrt-input{
+  margin-top: 20px;
+}
+.wrp-checkbox{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.modal-title{
+  color: #000;
+}
+.login-btn{
+  display: inline-block;
+    padding: 7px 20px;
+    width: 100%;
+    color: #ffa210;
+    background-color: #000;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #7C88C3;
+    margin-top: 35px;
+    text-transform: uppercase;
+    box-shadow: 0px 0px 8px 1px #ffffffb0;
+}
+.modal-p > p{
+  color: #000;
+  font-size: 14px;
+}
+
