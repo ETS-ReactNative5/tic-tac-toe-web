@@ -1,6 +1,6 @@
 import React, { useEffect, useRef,useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import validator from 'validator'
+import validator from 'validator';
 import { API } from "../../../Config";
 
 
@@ -23,6 +23,7 @@ const Register = () => {
     }
 
     useEffect(()=>{
+        
         const auth = localStorage.getItem('users');
         if(auth){
             navigate("/dashboard");
@@ -36,6 +37,7 @@ const Register = () => {
         data['name'] = name.current.value;
         data['email'] = email.current.value;
         data['password'] = password.current.value;
+      
 
 
         fetch(API+"/createuser", {
@@ -85,6 +87,7 @@ const Register = () => {
                     </ul>
                     <div className="register-btn">
                         <button onClick={saveRegister}>Register</button>
+                        <p className="login-p">You have account <a href="/login">please login</a></p>
                     </div>
                 </div>
             </div>

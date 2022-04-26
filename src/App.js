@@ -10,6 +10,7 @@ import Game from './components/pages/game/Game';
 import Dashboard from './components/pages/recordlisting/Dashboard';
 import GameStart from './components/pages/game/GameStart';
 import Private from './components/component/Privateroute'
+import ResetPassword from './components/pages/resetpassword/ResetPassword'
 
 function App(){
 	return(
@@ -19,10 +20,11 @@ function App(){
 					<Route path="/game" element={<Game />} />
 					<Route path="/game/start" element={<GameStart />} />
 					<Route path="/dashboard" element={<Dashboard />} />
-				</Route>
-					<Route path="/" element={<Login />} />	
+					</Route>
+					<Route path="/reset/password/:token" element={<ResetPassword />} />
+					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
-					{/* <Route path="/" element={<Home />} /> */}
+					<Route path="/" element={<Home />} />
 			</Routes>
 	</BrowserRouter>
 	)

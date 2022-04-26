@@ -6,19 +6,52 @@ import { API } from "../../../Config";
 
 
 const Dashboard = ()=>{
-
+    const [namelist, setNamelist] = useState([]);
     const [data, setData] = useState([]);
 
+ 
+  
     useEffect(() => {
         ShowHistory();
-        
+        getUserlistByid();
+
         
 
     }, []);
 
+    const getUserlistByid = () => {
+        const id = JSON.parse(localStorage.getItem('users')).id;
+
+        fetch(API+"/user/list/by/" + id,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+            }
+        ).then((response) => {
+            if (response.status == 200) {
+                response.json().then((resp) => {
+                    console.warn("result", resp);
+                    setNamelist(resp.data[0]);
+                   
+                });
+            }
+            
+
+
+        })
+    }
+    
+
     const ShowHistory = () => {
+ 
+        const name = JSON.parse(localStorage.getItem('users')).name;
+        const uid = JSON.parse(localStorage.getItem('users')).id;
+        console.log(name)
       
-        fetch(API+"/history/list",
+        fetch(API+"/history/list/" + uid,
             {
                 method: 'GET',
                 headers: {
@@ -31,10 +64,10 @@ const Dashboard = ()=>{
                 response.json().then((resp) => {
                     console.warn("result", resp);
                     let _temp = [];
-                    resp.result.map((v, i) => {
+                    resp.data.map((v, i) => {
                         _temp.push({
-                            username: v.usersname,
-                            email: v.histroyemail,
+                            username: v.name,
+                            email: v.email,
                             Date: new Date(v.date).toLocaleString(),
                             Result: v.result,
                             Action: <ul className="action-list">
@@ -59,7 +92,9 @@ const Dashboard = ()=>{
             <Header />
             <div className="container">
                 <div className="heading-dashboard">
-                    <h3>Dashboard</h3>
+                    {
+                        <h3>{namelist.name}</h3>
+                    }
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
@@ -123,7 +158,7 @@ const Dashboard = ()=>{
                                     toolbar:false,
                             }}
                             columns={[
-                                
+                               
                                 { title: "User name", field: "username" },
                                 { title: "Date", field: "Date" },
                                 { title: "Email", field: "email" },
