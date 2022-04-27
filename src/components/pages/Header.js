@@ -44,6 +44,7 @@ function changePickupStoreMenu(){
 })
 
 const auth = localStorage.getItem('users');
+const UserType = JSON.parse(localStorage.getItem('users')).UserType;
 
 const logOut = ()=>{
   localStorage.clear();
@@ -66,8 +67,16 @@ const logOut = ()=>{
                </div> */}
                <div className="header-child4">
                 <ul className="deskmenu-list">
-                    <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/game/start">Play Game</a></li> 
+                  {
+                      UserType == 3? <li><a href="/dashboard">Dashboard</a></li>: ""
+                    }
+                    
+                    {
+                      UserType == 3? <li><a href="/game/start">Play Game</a></li>: ""
+                    }
+                     {
+                       UserType == 2? <li><a href="/game/provider">Game Provider</a></li> : ""
+                     }
                   </ul>
                    <div className="connect-wallet">
                      {

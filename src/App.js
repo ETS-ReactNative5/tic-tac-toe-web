@@ -11,6 +11,8 @@ import Dashboard from './components/pages/recordlisting/Dashboard';
 import GameStart from './components/pages/game/GameStart';
 import Private from './components/component/Privateroute'
 import ResetPassword from './components/pages/resetpassword/ResetPassword'
+import GameProvider from './components/pages/gameprovider/GameProvider';
+import GameProviderDashboard from './components/pages/gameprovider/GameProviderDashboard';
 
 function App(){
 	return(
@@ -25,6 +27,8 @@ function App(){
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/" element={<Home />} />
+					<Route path="/game/provider" element={<GameProvider />} />
+					<Route path="/gameprovider/:doctor" element={<GameProviderDashboard />} />
 			</Routes>
 	</BrowserRouter>
 	)

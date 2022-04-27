@@ -17,7 +17,7 @@ const Login = ()=>{
     const SuccessModalToggle = () => setSuccessModal(!SuccessModal);
     const [unsuccessModal, setUnsuccessModal] = useState(false);
     const unsuccessModalToggle = () => setUnsuccessModal(!unsuccessModal);
-    
+
 
     useEffect(()=>{
         const auth = localStorage.getItem('users');
@@ -44,7 +44,14 @@ const Login = ()=>{
                     response.json().then((resp) => {
                         console.log("results", resp);
                         localStorage.setItem("users",JSON.stringify(resp))
-                        navigate("/dashboard");
+                        const UserType = JSON.parse(localStorage.getItem('users')).UserType;
+
+                        if(UserType == 3){
+                            navigate("/dashboard");
+                        }else{
+                            navigate("/game/provider");
+                        }
+                        
                     });
                 }
                 else {
