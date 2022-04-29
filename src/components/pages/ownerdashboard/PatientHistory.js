@@ -1,28 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useParams } from 'react-router-dom';
+import React, {useEffect,useRef,useState} from "react";
+import Plot from 'react-plotly.js';
 import MaterialTable from "material-table";
 import Header from "../Header";
 import { API } from "../../../Config";
+import { useParams } from "react-router-dom";
 
 
-
-const GameProviderDashboard = () => {
+const PatientHistory = ()=>{
     const [data, setData] = useState([]);
-    const { doctor } = useParams();
-
-
+    const {Patienthistory} = useParams();
+  
     useEffect(() => {
-        ShowHistory();
+        doctorList();
 
     }, []);
 
 
-
-    const ShowHistory = () => {
-
-       
-
-        fetch(API + "/get/single/user/history/list/" + doctor,
+    const doctorList = () => {
+        
+        fetch(API+"/get/single/user/history/list/" + Patienthistory,
             {
                 method: 'GET',
                 headers: {
@@ -42,9 +38,9 @@ const GameProviderDashboard = () => {
                             Date: new Date(v.date).toLocaleString(),
                             Result: v.result,
                             Action: <ul className="action-list">
-                                <li><a href="#">Delete</a></li>
-
-                            </ul>
+                            <li><a href={"/owner/edit/patient/history/" + v.id}>Edit</a></li>
+                            <li><a href="#">Delete</a></li>
+                        </ul>
                         })
                     })
                     setData(_temp);
@@ -52,43 +48,46 @@ const GameProviderDashboard = () => {
 
                 });
             }
-
+            
 
 
         })
     }
 
-    return (
+    return(
         <div className="recordlist-bg">
             <Header />
-
             <div className="container">
-                <div className="table-box">
-                    <div style={{ maxWidth: "100%" }} className="table-box">
+                <div className="heading-dashboard">
+                   <h3>Patient History</h3>
+                </div>
+                
+            </div>
+            <div className="container">
+            <div className="table-box">
+            <div style={{ maxWidth: "100%" }} >
                         <MaterialTable options={{
-                            search: false,
-                            showTitle: false,
-                            toolbar: false,
-                        }}
+                                    search: false,
+                                    showTitle: false,
+                                    toolbar:false,
+                            }}
                             columns={[
-
+                               
                                 { title: "User name", field: "username" },
                                 { title: "Date", field: "Date" },
                                 { title: "Email", field: "email" },
                                 { title: "Result", field: "Result" },
                                 { title: "Action", field: "Action" },
-
-
                             ]}
                             data={data}
-
+                           
                         />
                     </div>
-                </div>
+            </div>
             </div>
         </div>
     )
 
 }
 
-export default GameProviderDashboard;
+export default PatientHistory;

@@ -28,7 +28,7 @@ const GameProvider = ()=>{
         const doctor = JSON.parse(localStorage.getItem('users')).id;
         console.log(doctor)
       
-        fetch(API+"/usertype3history/list/" + doctor,
+        fetch(API+"/get/patient/list/" + doctor,
             {
                 method: 'GET',
                 headers: {
@@ -47,6 +47,7 @@ const GameProvider = ()=>{
                             email: v.email,
                             Action: <ul className="action-list">
                             <li><a href={"/GameProvider/" + v.id} className="view-patient">View</a></li>
+                            <li><a href={"/doctor/edit/patient/profile/" + v.id} className="view-patient">Edit</a></li>
                             {/* <li><a href="#">Delete</a></li> */}
                           
                         </ul>
@@ -87,7 +88,7 @@ const GameProvider = ()=>{
             if (response.status == 200) {
                 response.json().then((resp) => {
                     // console.log("results", resp);
-                   
+                    addformModelToggle();
                 });
             }
             else {

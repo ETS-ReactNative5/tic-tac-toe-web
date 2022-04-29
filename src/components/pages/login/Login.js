@@ -48,8 +48,10 @@ const Login = ()=>{
 
                         if(UserType == 3){
                             navigate("/dashboard");
-                        }else{
+                        }else if(UserType == 2){
                             navigate("/game/provider");
+                        }else if(UserType == 1){
+                            navigate("/owner/dashboard");
                         }
                         
                     });

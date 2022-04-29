@@ -12,7 +12,19 @@ import GameStart from './components/pages/game/GameStart';
 import Private from './components/component/Privateroute'
 import ResetPassword from './components/pages/resetpassword/ResetPassword'
 import GameProvider from './components/pages/gameprovider/GameProvider';
-import GameProviderDashboard from './components/pages/gameprovider/GameProviderDashboard';
+import DoctorPatientHistory from './components/pages/gameprovider/PatientHistory';
+import Ownerdashboard from './components/pages/ownerdashboard/Ownerdashboard';
+import PatientList from './components/pages/ownerdashboard/PatientList';
+import PatientHistory from './components/pages/ownerdashboard/PatientHistory';
+import DoctorProfile from './components/pages/gameprovider/DoctorProfile';
+import EditDoctorProfile from './components/pages/gameprovider/EditDoctorProfile';
+import OwnerEditDoctorProfile from './components/pages/gameprovider/OwnerEditDoctorProfile';
+import OwnereditPatient from './components/pages/ownerdashboard/OwnereditPatient';
+import OwnereditPatientHistory from './components/pages/ownerdashboard/OwnereditPatientHistory';
+import DoctorEditPatientList from './components/pages/gameprovider/DoctorEditPatientList';
+import DoctorEditpatienthistory from './components/pages/gameprovider/DoctorEditpatienthistory';
+import PatientProfile from './components/pages/patients/PatientProfile';
+import EditPatientProfile from './components/pages/patients/EditPatientProfile';
 
 function App(){
 	return(
@@ -28,7 +40,19 @@ function App(){
 					<Route path="/register" element={<Register />} />
 					<Route path="/" element={<Home />} />
 					<Route path="/game/provider" element={<GameProvider />} />
-					<Route path="/gameprovider/:doctor" element={<GameProviderDashboard />} />
+					<Route path="/gameprovider/:patient" element={<DoctorPatientHistory />} />
+					<Route path="/owner/dashboard" element={<Ownerdashboard />} />
+					<Route path="/patient/list/:patientlist" element={<PatientList />} />
+					<Route path="/patient/history/:Patienthistory" element={<PatientHistory />} />
+					<Route path="/doctor/profile" element={<DoctorProfile />} />
+					<Route path="/edit/profile" element={<EditDoctorProfile />} />
+					<Route path="/owner/edit/profile/:ownereditdoctor" element={<OwnerEditDoctorProfile />} />
+					<Route path="/owner/edit/patient/:ownereditpatient" element={<OwnereditPatient />} />
+					<Route path="/owner/edit/patient/history/:ownereditpatienthistory" element={<OwnereditPatientHistory />} />
+					<Route path="/doctor/edit/patient/profile/:doctoreditpatient" element={<DoctorEditPatientList />} />
+					<Route path="/doctor/edit/patient/history/:doctoreditpatienthistory" element={<DoctorEditpatienthistory />} />
+					<Route path="/patient/profile" element={<PatientProfile />} />
+					<Route path="/edit/patient/profile" element={<EditPatientProfile />} />
 			</Routes>
 	</BrowserRouter>
 	)

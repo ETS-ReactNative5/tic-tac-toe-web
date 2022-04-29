@@ -442,6 +442,7 @@ body.smr-open .slide-menu-right {
 .recordlist-bg{
   background-color: #fff;
   padding-top: 100px;
+  min-height: 100vh;
 }
 .table-box{
   margin-top: 40px;
@@ -477,6 +478,10 @@ body.smr-open .slide-menu-right {
 }
 .chart-box > .js-plotly-plot{
   width: 100%;
+}
+.heading-dashboard > p{
+  color: #000;
+  font-size: 18px;
 }
 
 
@@ -870,3 +875,73 @@ hr {
   margin-left: 10px;
   align-self: center;
 }
+
+/* doctor profile page css open here */
+.doctor-profile-bg{
+  background-color: #fff;
+  min-height: 100vh;
+}
+.doctor-profile-wrp{
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+.doctor-profile-list{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+.wrp-docotr-profile-input{
+  display: flex;
+  justify-content: space-between;
+}
+.docotr-profile-input{
+  width: 49%;
+}
+.docotr-profile-input > input{
+  display: inline-block;
+  width: 100%;
+  outline: none;
+  border: 1px solid #00000063;
+  padding: 6px 15px;
+  font-size: 15px;
+  border-radius: 6px;
+}
+.docotr-profile-input > input{
+  margin-top: 20px;
+}
+.docotr-profile-input > button{
+  display: inline-block;
+  width: 100%;
+  color: #ffa210;
+  background-color: #000;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 32px;
+  text-align: center;
+  transition: .5s;
+  margin-top: 30px;
+  box-shadow: 0px 0px 8px #ffffff8f;
+}
+.doctor-profile-head-child2 > a{
+  display: inline-block;
+  color: #ffa210;
+  background-color: #000;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 32px;
+}
+.doctor-profile-head-child1 > h3{
+  color: #000;
+  font-size: 24px;
+  font-weight: 600;
+}
+.doctor-profile-head{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* doctor profile page css closed here */
