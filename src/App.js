@@ -11,18 +11,18 @@ import Dashboard from './components/pages/recordlisting/Dashboard';
 import GameStart from './components/pages/game/GameStart';
 import Private from './components/component/Privateroute'
 import ResetPassword from './components/pages/resetpassword/ResetPassword'
-import GameProvider from './components/pages/gameprovider/GameProvider';
-import DoctorPatientHistory from './components/pages/gameprovider/PatientHistory';
+import GameProvider from './components/pages/doctor/GameProvider';
+import DoctorPatientHistory from './components/pages/doctor/PatientHistory';
 import Ownerdashboard from './components/pages/ownerdashboard/Ownerdashboard';
 import PatientList from './components/pages/ownerdashboard/PatientList';
 import PatientHistory from './components/pages/ownerdashboard/PatientHistory';
-import DoctorProfile from './components/pages/gameprovider/DoctorProfile';
-import EditDoctorProfile from './components/pages/gameprovider/EditDoctorProfile';
-import OwnerEditDoctorProfile from './components/pages/gameprovider/OwnerEditDoctorProfile';
+import DoctorProfile from './components/pages/doctor/DoctorProfile';
+import EditDoctorProfile from './components/pages/doctor/EditDoctorProfile';
+import OwnerEditDoctorProfile from './components/pages/doctor/OwnerEditDoctorProfile';
 import OwnereditPatient from './components/pages/ownerdashboard/OwnereditPatient';
 import OwnereditPatientHistory from './components/pages/ownerdashboard/OwnereditPatientHistory';
-import DoctorEditPatientList from './components/pages/gameprovider/DoctorEditPatientList';
-import DoctorEditpatienthistory from './components/pages/gameprovider/DoctorEditpatienthistory';
+import DoctorEditPatientList from './components/pages/doctor/DoctorEditPatientList';
+import DoctorEditpatienthistory from './components/pages/doctor/DoctorEditpatienthistory';
 import PatientProfile from './components/pages/patients/PatientProfile';
 import EditPatientProfile from './components/pages/patients/EditPatientProfile';
 
