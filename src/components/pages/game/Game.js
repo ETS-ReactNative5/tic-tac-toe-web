@@ -138,9 +138,9 @@ class Game extends Component {
           <div id="status">{this.state.winnerLine2}</div>
           
           
-          <div id="head">
+          {/* <div id="head">
               World's best tic tac toe AI
-          </div>
+          </div> */}
           <div id="board" onClick={(e)=>this.clicked(e.target)}>
               <div className="square" data-square="0"></div>
               <div className="square" data-square="1"></div>

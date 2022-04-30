@@ -70,10 +70,7 @@ const Dashboard = ()=>{
                             email: v.email,
                             Date: new Date(v.date).toLocaleString(),
                             Result: v.result,
-                            Action: <ul className="action-list">
-                            <li><a href="#">Delete</a></li>
-                          
-                        </ul>
+                         
                         })
                     })
                     setData(_temp);
@@ -93,7 +90,7 @@ const Dashboard = ()=>{
             <div className="container">
                 <div className="heading-dashboard">
                     {
-                        <h3>{namelist.name}</h3>
+                        <h3>Welcome {namelist.name},</h3>
                     }
                 </div>
                 <div className="row">
@@ -163,7 +160,7 @@ const Dashboard = ()=>{
                                 { title: "Date", field: "Date" },
                                 { title: "Email", field: "email" },
                                 { title: "Result", field: "Result" },
-                                { title: "Action", field: "Action" },
+                                
                                 
                                
                             ]}
