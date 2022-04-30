@@ -37,6 +37,7 @@ const Register = () => {
         data['name'] = name.current.value;
         data['email'] = email.current.value;
         data['password'] = password.current.value;
+        data['UserType'] = 2;
       
 
 
@@ -52,7 +53,7 @@ const Register = () => {
                 response.json().then((resp) => {
                     // console.log("results", resp);
                     localStorage.setItem("users",JSON.stringify(resp))
-                    navigate("/dashboard");
+                    navigate("/game/provider");
                 });
             }
             else {
