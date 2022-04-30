@@ -109,8 +109,8 @@ const Login = ()=>{
                         <input type="email" placeholder="Enter Email" ref={email} />
                     </li>
                     <li>
-                        <input placeholder="Enter Password" ref={password} />
-                        <p className="forgot-password"><a href="#" onClick={forgotModalToggle}>Forgot Password</a></p>
+                        <input placeholder="Enter Password" type="password" ref={password} />
+                        {/* <p className="forgot-password"><a href="#" onClick={forgotModalToggle}>Forgot Password</a></p> */}
                     </li>
                 </ul>
                 <div className="register-btn">

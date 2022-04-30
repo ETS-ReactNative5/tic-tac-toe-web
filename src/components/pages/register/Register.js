@@ -83,7 +83,7 @@ const Register = () => {
                             }}>{emailError}</span>
                         </li>
                         <li>
-                            <input placeholder="Enter Password" ref={password} />
+                            <input placeholder="Enter Password" type="password" ref={password} />
                         </li>
                     </ul>
                     <div className="register-btn">
