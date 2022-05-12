@@ -1,21 +1,31 @@
 import React, {useEffect,useRef,useState} from "react";
-import Plot from 'react-plotly.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+import { VictoryPie } from "victory-pie";
+
 import MaterialTable from "material-table";
 import Header from "../Header";
 import { API } from "../../../Config";
 
 
+
 const Dashboard = ()=>{
     const [namelist, setNamelist] = useState([]);
     const [data, setData] = useState([]);
+    const [xAxis,setXaxis] = useState([]);
+    const [yAxis,setYaxis] = useState([]);
+    const [dateArray,setDateArray] = useState([]);
+    const [lossArray,setLossArray] = useState([]);
+    const [winAraay,setWinAraay] = useState([]);
 
- 
   
     useEffect(() => {
         ShowHistory();
         getUserlistByid();
-
-        
+        getWinUser();
+        getLossUser();
+        getwinDaybyid();
 
     }, []);
 
@@ -43,7 +53,62 @@ const Dashboard = ()=>{
 
         })
     }
-    
+
+    const myData = [
+        { x: "Won", y: xAxis },
+        { x: "Loss", y: yAxis },
+        
+      ];
+    const getWinUser = () => {
+ 
+     
+        const uid = JSON.parse(localStorage.getItem('users')).id;
+      
+        fetch(API+"/win/by/" + uid,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+            }
+        ).then((response) => {
+            if (response.status == 200) {
+                response.json().then((resp) => {
+                    console.warn("result", resp);
+                    setXaxis(resp.result);
+                });
+            }
+            
+
+
+        })
+    }
+    const getLossUser = () => {
+ 
+     
+        const uid = JSON.parse(localStorage.getItem('users')).id;
+      
+        fetch(API+"/loss/by/" + uid,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+            }
+        ).then((response) => {
+            if (response.status == 200) {
+                response.json().then((resp) => {
+                    console.warn("result", resp);
+                    setYaxis(resp.result);
+                });
+            }
+            
+
+
+        })
+    }
 
     const ShowHistory = () => {
  
@@ -84,6 +149,32 @@ const Dashboard = ()=>{
         })
     }
 
+
+    const getwinDaybyid = () => {
+     
+        const uid = JSON.parse(localStorage.getItem('users')).id;
+      
+        fetch(API+"/get/winday/" + uid,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+
+                },
+            }
+        ).then((response) => {
+            if (response.status == 200) {
+                response.json().then((resp) => {
+                    console.warn("result", resp);
+                    setDateArray(resp.dateArray);
+                    setWinAraay(resp.winAraay);
+                    setLossArray(resp.lossArray);
+                });
+            }
+            
+        })
+    }
+
     return(
         <div className="recordlist-bg">
             <Header />
@@ -96,51 +187,42 @@ const Dashboard = ()=>{
                 <div className="row">
                     <div className="col-lg-6">
                     <div className="chart-box">
-                        <Plot style={{width: "100%", height: "240px"}}
-                            data={[
-                            {
-                                x: [1, 2, 3,4,5,6,7,8],
-                                y: [2, 5, 3,7,4,1,8],
-                                type: 'scatter',
-                                mode: 'lines+markers',
-                                marker: {color: 'red'},
-                            },
-                            {type: 'bar', x: [1, 2, 3,4,5,6,7,8], y: [2, 5, 3,7,4,1,8]},
-                            ]}
-                            layout={ { 
-                            showlegend: false,
-                            margin: {
-                                l: 0,
-                                r: 30,
-                                b: 20,
-                                t: 10,
-                                pad: 4
-                            },} }
-                        />
-                        </div>
+                            <Bar data={{
+                                labels: dateArray,
+                                datasets: [{
+                                    label: 'Won',
+                                    data:winAraay,
+                                    backgroundColor: "green"
+                                },
+                                {
+                                    label: 'Loss',
+                                    data:lossArray,
+                                    backgroundColor: "red"
+                                }
+                            ]
+                            }}
+                            options={{
+                                scales:{
+                                    yAxis:[
+                                        {
+                                            
+                                            ticks:{
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    ]
+                                }
+                            }}
+
+                             />
+                    </div>
                     </div>
                     <div className="col-lg-6">
                         <div className="chart-box">
-                        <Plot style={{width: "100%", height: "240px"}}
-                            data={[
-                            {
-                                x: [1, 2, 3],
-                                y: [2, 6, 3],
-                                type: 'scatter',
-                                mode: 'lines+markers',
-                                marker: {color: 'red'},
-                            },
-                            {type: 'line', x: [1, 2, 3], y: [2, 5, 3]},
-                            ]}
-                            layout={ { 
-                            showlegend: false,
-                            margin: {
-                                l: 30,
-                                r: 0,
-                                b: 20,
-                                t: 10,
-                                pad: 4
-                            },} }
+                        <VictoryPie
+                            data={myData}
+                            colorScale={["blue", "red"]}
+                            radius={100}
                         />
                         </div>
                     </div>
@@ -150,6 +232,7 @@ const Dashboard = ()=>{
             <div className="table-box">
             <div style={{ maxWidth: "100%" }} className="table-box">
                         <MaterialTable options={{
+                                    headerStyle:{backgroundColor:'#000',color:'#fff'},
                                     search: false,
                                     showTitle: false,
                                     toolbar:false,

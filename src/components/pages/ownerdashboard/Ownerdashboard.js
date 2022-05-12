@@ -66,6 +66,7 @@ const Ownerdashboard = ()=>{
             <div className="table-box">
             <div style={{ maxWidth: "100%" }} >
                         <MaterialTable options={{
+                                    headerStyle:{backgroundColor:'#000',color:'#fff'},
                                     search: false,
                                     showTitle: false,
                                     toolbar:false,

@@ -42,8 +42,8 @@ const PatientHistory = () => {
                             Date: new Date(v.date).toLocaleString(),
                             Result: v.result,
                             Action: <ul className="action-list">
-                                <li><a href={"/doctor/edit/patient/history/" + v.id}>Edit</a></li>
-                                <li><a href="#">Delete</a></li>
+                                <li><a href={"/doctor/edit/patient/history/" + v.id} className="view-patient">Edit</a></li>
+                                <li><a href="#" className="view-patient">Delete</a></li>
                             </ul>
                         })
                     })
@@ -66,6 +66,7 @@ const PatientHistory = () => {
                 <div className="table-box">
                     <div style={{ maxWidth: "100%" }} className="table-box">
                         <MaterialTable options={{
+                            headerStyle:{backgroundColor:'#000',color:'#fff'},
                             search: false,
                             showTitle: false,
                             toolbar: false,

@@ -945,3 +945,7 @@ hr {
 }
 
 /* doctor profile page css closed here */
+
+.chart-box > div > svg{
+  height: 300px! important;
+}

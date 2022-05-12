@@ -1,9 +1,11 @@
 import React, {useEffect,useRef,useState} from "react";
 import { Button, Modal, ModalHeader, ModalBody, Row } from 'reactstrap';
+import Plot from 'react-plotly.js';
 import MaterialTable from "material-table";
 import Header from "../Header";
 import validator from 'validator';
 import { API } from "../../../Config";
+import {csv} from 'd3';
 
 
 const GameProvider = ()=>{
@@ -15,13 +17,70 @@ const GameProvider = ()=>{
     const email = useRef();
     const password = useRef();
     const [emailError, setEmailError] = useState('')
+    const [xAxis,setXaxis] = useState([]);
+    const [yAxis,setYaxis] = useState([]);
+    const [plot,setPlot] = useState(null);
  
   
     useEffect(() => {
         usertype3Histroylist();
+        getCsv() ; 
 
     }, []);
 
+
+    const getCsv = () => {
+        const doctor = JSON.parse(localStorage.getItem('users')).id;
+        fetch(API+"/get/patient/list/" + doctor,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+               
+                },
+            }
+        ).then((response) => {
+            if (response.status == 200) {
+                response.json().then((resp) => {
+                    console.warn("result", resp);
+                      
+                        if (resp.data[0]) {
+                            getData(resp.data[0].name)
+                        }
+
+
+                });
+            }
+          
+            else {
+                alert("network error")
+            }
+
+
+        })
+    }
+   
+    async function getData(){
+        let _x = [] ;
+        let _y = [];
+        csv('/5f7c7a23456e7signalB.csv').then(data=>{
+           console.log(data);
+            data.map((v,i) => {
+                // _x.push(new Date(v.x));
+                _x.push(new Date(parseInt(v.x)));
+                _y.push(parseFloat(v.y));
+                if(i == 1){
+                    // alert("here");
+                    setXaxis(_x);
+                    setYaxis(_y);
+                    // plotGraph(_x,_y);
+ 
+                }
+            })
+            // console.log(data)
+        })
+
+    }
   
     const usertype3Histroylist = () => {
  
@@ -46,7 +105,7 @@ const GameProvider = ()=>{
                             username: v.name,
                             email: v.email,
                             Action: <ul className="action-list">
-                            <li><a href={"/GameProvider/" + v.id} className="view-patient">View</a></li>
+                            <li><a href={"/gameprovider/" + v.id} className="view-patient">View</a></li>
                             <li><a href={"/doctor/edit/patient/profile/" + v.id} className="view-patient">Edit</a></li>
                             {/* <li><a href="#">Delete</a></li> */}
                           
@@ -114,6 +173,53 @@ const GameProvider = ()=>{
         <div className="recordlist-bg">
             <Header />
             <div className="container">
+            <div className="row">
+                    <div className="col-lg-6">
+                    <div className="chart-box">
+                            {
+                                xAxis.length > 0 && yAxis.length > 0 &&
+                                <Plot
+                                data={[
+                                    {
+                                        x: xAxis,
+                                        y: yAxis,
+                                        type: 'bar',
+                                        marker: { color: 'red' },
+                                    },
+                                    // { type: 'bar', x: [1, 2, 3], y: [2, 6, 3] },
+                                ]}
+                               
+                            />
+                            }
+  
+                        </div>
+                    </div>
+                    <div className="col-lg-6">
+                        <div className="chart-box">
+                        <Plot style={{width: "100%", height: "240px"}}
+                            data={[
+                            {
+                                x: [1, 2, 3],
+                                y: [2, 6, 3],
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: {color: 'red'},
+                            },
+                            {type: 'line', x: [1, 2, 3], y: [2, 5, 3]},
+                            ]}
+                            layout={ { 
+                            showlegend: false,
+                            margin: {
+                                l: 30,
+                                r: 0,
+                                b: 20,
+                                t: 10,
+                                pad: 4
+                            },} }
+                        />
+                        </div>
+                    </div>
+                </div>
                 <div className="head-game-provider">
                     <div className="game-provider-child">
                         <h3>Game</h3>
@@ -127,6 +233,7 @@ const GameProvider = ()=>{
             <div className="table-box">
             <div style={{ maxWidth: "100%" }} className="table-box">
                         <MaterialTable options={{
+                                    headerStyle:{backgroundColor:'#000',color:'#fff'},
                                     search: false,
                                     showTitle: false,
                                     toolbar:false,
