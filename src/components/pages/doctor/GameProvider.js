@@ -173,7 +173,7 @@ const GameProvider = ()=>{
         <div className="recordlist-bg">
             <Header />
             <div className="container">
-            <div className="row">
+            {/* <div className="row">
                     <div className="col-lg-6">
                     <div className="chart-box">
                             {
@@ -219,10 +219,10 @@ const GameProvider = ()=>{
                         />
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="head-game-provider">
                     <div className="game-provider-child">
-                        <h3>Game</h3>
+                        <h3>Patients</h3>
                     </div>
                     <div className="game-provider-child">
                         <a href="#" onClick={addformModelToggle}>Add patient</a>
