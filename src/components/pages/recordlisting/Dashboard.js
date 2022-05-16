@@ -1,25 +1,25 @@
-import React, {useEffect,useRef,useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 import { VictoryPie } from "victory-pie";
-
 import MaterialTable from "material-table";
 import Header from "../Header";
 import { API } from "../../../Config";
 
 
 
-const Dashboard = ()=>{
+const Dashboard = () => {
+    const [graphLoader, setgraphLoader] = useState(false)
+    const [pieLoader, setpieLoader] = useState(false)
     const [namelist, setNamelist] = useState([]);
     const [data, setData] = useState([]);
-    const [xAxis,setXaxis] = useState([]);
-    const [yAxis,setYaxis] = useState([]);
-    const [dateArray,setDateArray] = useState([]);
-    const [lossArray,setLossArray] = useState([]);
-    const [winAraay,setWinAraay] = useState([]);
+    const [xAxis, setXaxis] = useState([]);
+    const [yAxis, setYaxis] = useState([]);
+    const [dateArray, setDateArray] = useState([]);
+    const [lossArray, setLossArray] = useState([]);
+    const [winAraay, setWinAraay] = useState([]);
 
-  
     useEffect(() => {
         ShowHistory();
         getUserlistByid();
@@ -32,7 +32,7 @@ const Dashboard = ()=>{
     const getUserlistByid = () => {
         const id = JSON.parse(localStorage.getItem('users')).id;
 
-        fetch(API+"/user/list/by/" + id,
+        fetch(API + "/user/list/by/" + id,
             {
                 method: 'GET',
                 headers: {
@@ -45,26 +45,21 @@ const Dashboard = ()=>{
                 response.json().then((resp) => {
                     console.warn("result", resp);
                     setNamelist(resp.data[0]);
-                   
+
                 });
             }
-            
 
 
         })
     }
 
-    const myData = [
-        { x: "Won", y: xAxis },
-        { x: "Loss", y: yAxis },
-        
-      ];
+    
     const getWinUser = () => {
- 
-     
-        const uid = JSON.parse(localStorage.getItem('users')).id;
       
-        fetch(API+"/win/by/" + uid,
+
+        const uid = JSON.parse(localStorage.getItem('users')).id;
+
+        fetch(API + "/win/by/" + uid,
             {
                 method: 'GET',
                 headers: {
@@ -79,17 +74,16 @@ const Dashboard = ()=>{
                     setXaxis(resp.result);
                 });
             }
-            
+
 
 
         })
     }
     const getLossUser = () => {
- 
-     
+        
         const uid = JSON.parse(localStorage.getItem('users')).id;
-      
-        fetch(API+"/loss/by/" + uid,
+
+        fetch(API + "/loss/by/" + uid,
             {
                 method: 'GET',
                 headers: {
@@ -104,19 +98,23 @@ const Dashboard = ()=>{
                     setYaxis(resp.result);
                 });
             }
-            
+
 
 
         })
     }
+    const myData = [
+        { x: "Won", y: xAxis },
+        { x: "Loss", y: yAxis },
 
+    ];
     const ShowHistory = () => {
- 
+
         const name = JSON.parse(localStorage.getItem('users')).name;
         const uid = JSON.parse(localStorage.getItem('users')).id;
         console.log(name)
-      
-        fetch(API+"/history/list/" + uid,
+
+        fetch(API + "/history/list/" + uid,
             {
                 method: 'GET',
                 headers: {
@@ -135,7 +133,7 @@ const Dashboard = ()=>{
                             email: v.email,
                             Date: new Date(v.date).toLocaleString(),
                             Result: v.result,
-                         
+
                         })
                     })
                     setData(_temp);
@@ -143,7 +141,7 @@ const Dashboard = ()=>{
 
                 });
             }
-            
+
 
 
         })
@@ -151,10 +149,10 @@ const Dashboard = ()=>{
 
 
     const getwinDaybyid = () => {
-     
+        setgraphLoader(true)
         const uid = JSON.parse(localStorage.getItem('users')).id;
-      
-        fetch(API+"/get/winday/" + uid,
+
+        fetch(API + "/get/winday/" + uid,
             {
                 method: 'GET',
                 headers: {
@@ -163,6 +161,7 @@ const Dashboard = ()=>{
                 },
             }
         ).then((response) => {
+            setgraphLoader(false)
             if (response.status == 200) {
                 response.json().then((resp) => {
                     console.warn("result", resp);
@@ -171,11 +170,11 @@ const Dashboard = ()=>{
                     setLossArray(resp.lossArray);
                 });
             }
-            
+
         })
     }
-
-    return(
+    console.log(xAxis)
+    return (
         <div className="recordlist-bg">
             <Header />
             <div className="container">
@@ -186,72 +185,90 @@ const Dashboard = ()=>{
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
-                    <div className="chart-box">
-                            <Bar data={{
-                                labels: dateArray,
-                                datasets: [{
-                                    label: 'Won',
-                                    data:winAraay,
-                                    backgroundColor: "green"
-                                },
-                                {
-                                    label: 'Loss',
-                                    data:lossArray,
-                                    backgroundColor: "red"
-                                }
-                            ]
-                            }}
-                            options={{
-                                scales:{
-                                    yAxis:[
-                                        {
-                                            
-                                            ticks:{
-                                                beginAtZero: true
-                                            }
-                                        }
+                        <div className="chart-box">
+                            {
+                                dateArray.length > 0 && lossArray.length > 0 && winAraay.length > 0 &&
+                                <Bar data={{
+                                    labels: dateArray,
+                                    datasets: [{
+                                        label: 'Won',
+                                        data: winAraay,
+                                        backgroundColor: "green"
+                                    },
+                                    {
+                                        label: 'Loss',
+                                        data: lossArray,
+                                        backgroundColor: "red"
+                                    }
                                     ]
-                                }
-                            }}
+                                }}
+                                    options={{
+                                        scales: {
+                                            yAxis: [
+                                                {
 
-                             />
-                    </div>
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }}
+
+                                /> 
+                            }
+
+                            {
+                                 graphLoader &&
+
+                                <div className="wrp-chart-loader">
+                                    <div class="loading">
+                                        <div class="loading-1"></div>
+                                        <div class="loading-2"></div>
+                                        <div class="loading-3"></div>
+                                        <div class="loading-4"></div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
                     <div className="col-lg-6">
                         <div className="chart-box">
-                        <VictoryPie
-                            data={myData}
-                            colorScale={["blue", "red"]}
-                            radius={100}
-                        />
+
+                                <VictoryPie
+                                data={myData}
+                                colorScale={["blue", "red"]}
+                                radius={100}
+                            /> 
+                           
                         </div>
                     </div>
                 </div>
             </div>
             <div className="container">
-            <div className="table-box">
-            <div style={{ maxWidth: "100%" }} className="table-box">
+                <div className="table-box">
+                    <div style={{ maxWidth: "100%" }} className="table-box">
                         <MaterialTable options={{
-                                    headerStyle:{backgroundColor:'#000',color:'#fff'},
-                                    search: false,
-                                    showTitle: false,
-                                    toolbar:false,
-                            }}
+                            headerStyle: { backgroundColor: '#000', color: '#fff' },
+                            search: false,
+                            showTitle: false,
+                            toolbar: false,
+                        }}
                             columns={[
-                               
+
                                 { title: "User name", field: "username" },
                                 { title: "Date", field: "Date" },
                                 { title: "Email", field: "email" },
                                 { title: "Result", field: "Result" },
-                                
-                                
-                               
+
+
+
                             ]}
                             data={data}
-                           
+
                         />
                     </div>
-            </div>
+                </div>
             </div>
         </div>
     )

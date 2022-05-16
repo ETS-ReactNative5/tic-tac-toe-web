@@ -4,18 +4,22 @@ import Header from "../Header";
 import { API } from "../../../Config";
 
 class Game extends Component {
-
+  state = {
+    Loader: false,
+  }
   constructor() {
     super();
-    
+
     this.state = {
       result: "",
       winner: undefined,
-      
-      
+       
       
     };
+
     
+
+        
     this.gameState = {
         turn: 'X',
         gameLocked: false,
@@ -32,7 +36,7 @@ class Game extends Component {
 
 
   savadata(){
-  
+    this.setState({Loader: true})
     let url = API+"/histryplayer";
     let result = this.state.result;
     const email = JSON.parse(localStorage.getItem('users')).email;
@@ -47,6 +51,7 @@ class Game extends Component {
       },
       body:JSON.stringify({result, email,name,uid})
     }).then((response) => {
+      this.setState({Loader: false})
       if (response.status == 200) {
           window.location.href = "/dashboard";
           // console.log("nasim")
@@ -129,6 +134,9 @@ class Game extends Component {
   }
 
   render() {
+
+    const {Loader} = this.state;
+
     return (
       <div>
         <Header />
@@ -153,7 +161,11 @@ class Game extends Component {
               <div className="square" data-square="8"></div>
           </div>
          
-          <button className="save-game" onClick={()=>{this.savadata()}}>Save Game</button>
+          <button className="save-game" onClick={()=>{this.savadata()}}>Save Game
+                          {
+                                Loader && <div id="loader"></div>       
+                            }
+          </button>
       </div>      
       </div>
     );

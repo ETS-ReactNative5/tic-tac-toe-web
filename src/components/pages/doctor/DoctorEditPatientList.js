@@ -100,7 +100,7 @@ const DoctorEditPatientList = ()=>{
                     <li>
                         <div className="wrp-docotr-profile-input">
                             <div className="docotr-profile-input w-100">
-                                <input placeholder="Password" defaultValue={data.password} ref={password} />
+                                <input placeholder="Password" type="password" defaultValue={data.password} ref={password} />
                             </div>
                         </div>
                     </li>

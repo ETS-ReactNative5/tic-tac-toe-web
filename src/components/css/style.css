@@ -483,6 +483,13 @@ body.smr-open .slide-menu-right {
   color: #000;
   font-size: 18px;
 }
+.norecord-found > p{
+  margin: 0px;
+  color: #000;
+  font-size: 15px;
+  padding: 15px;
+  text-align: center;
+}
 
 
 
@@ -868,6 +875,11 @@ hr {
   text-align: center;
   transition: .5s;
 }
+.view-patient:hover{
+  text-decoration: none;
+  transform: translateY(-5px);
+  transition: 0.5s;
+}
 .action-list > li:first-child{
   margin-left: 0px;
 }
@@ -947,5 +959,27 @@ hr {
 /* doctor profile page css closed here */
 
 .chart-box > div > svg{
-  height: 300px! important;
+  height: 270px! important;
+}
+
+#loader{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #dcefff;
+  border-top: 2px solid #ffa210;
+  animation: rotate 2s infinite ease;
+  margin-left: 10px;
+  position: relative;
+  top: 4px;
+}
+@keyframes rotate{
+  0%{
+    transform: none;
+  }
+ 100%{
+   transform: rotate(1turn);
+   
+}
 }

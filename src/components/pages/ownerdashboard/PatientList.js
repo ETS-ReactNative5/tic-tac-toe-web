@@ -36,9 +36,9 @@ const PatientList = ()=>{
                             username: v.name,
                             email: v.email,
                             Action: <ul className="action-list">
-                            <li><a href={"/patient/history/" + v.id}>View</a></li>
-                            <li><a href={"/owner/edit/patient/" + v.id}>Edit</a></li>
-                          
+                            <li><a href={"/patient/history/" + v.id} className="view-patient">View</a></li>
+                            <li><a href={"/owner/edit/patient/" + v.id} className="view-patient">Edit</a></li>
+                            <li><a href="#" className="view-patient">Delete</a></li>
                         </ul>
                         })
                     })

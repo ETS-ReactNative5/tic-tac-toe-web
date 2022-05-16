@@ -6,7 +6,7 @@ import { API } from "../../../Config";
 
 
 const Login = ()=>{
-
+    const [Loader, setLoader] = useState(false)
     const email = useRef();
     const password = useRef();
     const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Login = ()=>{
     const unsuccessModalToggle = () => setUnsuccessModal(!unsuccessModal);
 
 
+
     useEffect(()=>{
         const auth = localStorage.getItem('users');
         if(auth){
@@ -26,6 +27,7 @@ const Login = ()=>{
         }
     })
     const savelogin = ()=>{
+        setLoader(true)
         let data ={};
 
         data['email'] = email.current.value;
@@ -40,12 +42,13 @@ const Login = ()=>{
                 },
                 body:JSON.stringify(data)
             }).then((response) => {
+                setLoader(false)
                 if (response.status == 200) {
                     response.json().then((resp) => {
                         console.log("results", resp);
                         localStorage.setItem("users",JSON.stringify(resp))
                         const UserType = JSON.parse(localStorage.getItem('users')).UserType;
-
+                       
                         if(UserType == 3){
                             navigate("/dashboard");
                         }else if(UserType == 2){
@@ -114,7 +117,12 @@ const Login = ()=>{
                     </li>
                 </ul>
                 <div className="register-btn">
-                    <button onClick={savelogin}>Login</button>
+                    <button onClick={savelogin}>Login
+                    {
+                                Loader && 
+                                <div id="loader"></div>
+                            }
+                    </button>
                 </div>
                 <p className="login-p">You don't have account <a href="/register">please register</a></p>
             </div>
@@ -133,7 +141,9 @@ const Login = ()=>{
                                     placeholder="Email"
                                 />
                             </div>
-                            <button className="login-btn" type="submit"  >submit </button>
+                            <button className="login-btn" type="submit"  >submit 
+                            
+                            </button>
                         </div>
                     </div>
                 </ModalBody>

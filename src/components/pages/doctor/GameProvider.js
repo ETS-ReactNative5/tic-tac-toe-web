@@ -107,7 +107,7 @@ const GameProvider = ()=>{
                             Action: <ul className="action-list">
                             <li><a href={"/gameprovider/" + v.id} className="view-patient">View</a></li>
                             <li><a href={"/doctor/edit/patient/profile/" + v.id} className="view-patient">Edit</a></li>
-                            {/* <li><a href="#">Delete</a></li> */}
+                            <li><a href="#" className="view-patient">Delete</a></li>
                           
                         </ul>
                         })
@@ -270,7 +270,7 @@ const GameProvider = ()=>{
                             }}>{emailError}</span>
                         </li>
                         <li>
-                            <input placeholder="Enter Password" ref={password} />
+                            <input placeholder="Enter Password" type="password" ref={password} />
                         </li>
                     </ul>
                     <div className="register-btn">

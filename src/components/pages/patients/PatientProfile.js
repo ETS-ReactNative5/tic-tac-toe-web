@@ -68,7 +68,7 @@ const PatientProfile = ()=>{
                     <li>
                         <div className="wrp-docotr-profile-input">
                             <div className="docotr-profile-input w-100">
-                                <input placeholder="Password" value={data.password} />
+                                <input placeholder="Password" type="password" value={data.password} />
                             </div>
                         </div>
                     </li>

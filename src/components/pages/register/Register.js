@@ -5,7 +5,7 @@ import { API } from "../../../Config";
 
 
 const Register = () => {
-
+    const [Loader, setLoader] = useState(false)
     const name = useRef();
     const email = useRef();
     const password = useRef();
@@ -32,6 +32,7 @@ const Register = () => {
 
 
     const saveRegister = () => {
+        setLoader(true)
         let data = {};
 
         data['name'] = name.current.value;
@@ -49,6 +50,7 @@ const Register = () => {
             },
             body:JSON.stringify(data)
         }).then((response) => {
+            setLoader(false)
             if (response.status == 200) {
                 response.json().then((resp) => {
                     // console.log("results", resp);
@@ -87,7 +89,12 @@ const Register = () => {
                         </li>
                     </ul>
                     <div className="register-btn">
-                        <button onClick={saveRegister}>Register</button>
+                        <button onClick={saveRegister}>Register
+                        {
+                                Loader && 
+                                <div id="loader"></div>
+                            }
+                        </button>
                         <p className="login-p">You have account <a href="/login">please login</a></p>
                     </div>
                 </div>

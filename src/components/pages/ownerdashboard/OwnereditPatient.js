@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 
 const OwnereditPatient = ()=>{
     const {ownereditpatient} = useParams();
+    const [Loader, setLoader] = useState(false)
     const name = useRef();
     const email = useRef();
     const password = useRef();
@@ -42,6 +43,7 @@ const OwnereditPatient = ()=>{
         })
     }
     const UpdatePatient = () => {
+        setLoader(true)
         let data = {};
 
         data['name'] = name.current.value;
@@ -58,6 +60,7 @@ const OwnereditPatient = ()=>{
             },
             body:JSON.stringify(data)
         }).then((response) => {
+            setLoader(false)
             if (response.status == 200) {
                 response.json().then((resp) => {
                     console.log(resp)
@@ -101,14 +104,19 @@ const OwnereditPatient = ()=>{
                     <li>
                         <div className="wrp-docotr-profile-input">
                             <div className="docotr-profile-input w-100">
-                                <input placeholder="Password" defaultValue={data.password} ref={password} />
+                                <input placeholder="Password" type="password" defaultValue={data.password} ref={password} />
                             </div>
                         </div>
                     </li>
                     <li>
                         <div className="wrp-docotr-profile-input">
                             <div className="docotr-profile-input w-100">
-                               <button onClick={UpdatePatient}>Update</button>
+                               <button onClick={UpdatePatient}>Update
+                               {
+                                Loader && 
+                                <div id="loader"></div>
+                            }
+                               </button>
                             </div>
                         </div>
                     </li>

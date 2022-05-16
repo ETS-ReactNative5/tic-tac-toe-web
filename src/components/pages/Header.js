@@ -1,6 +1,7 @@
 import React, { useEffect, useRef,useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/style.css'
+import '../css/style2.scss'
 import '../css/responsive.css'
 // import '../css/navbar.css'
 import $ from "jquery";
