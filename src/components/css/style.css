@@ -983,3 +983,62 @@ hr {
    
 }
 }
+
+
+
+/* board game css */
+
+.game01_bg{
+  margin-top: 100px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+ }
+ .board-game{
+  height: 90px;
+  width: 90px;
+  font-size: 36px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  border: 3px solid #ffa210;
+  margin: 10px;
+ }
+ .board-game:hover{
+   border-color: darkgreen;
+   color: darkgreen;
+ }
+ .Display_bg{
+   font-size: 35px;
+   width: 100%;
+   color: white;
+   text-align: center;
+ }
+ 
+ .Clear_bg{
+  display: inline-block;
+  width: 160px;
+    color: #ffa210;
+    background-color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 25px;
+    border-radius: 6px;
+    text-align: center;
+    transition: .5s;
+    border: 2px solid #ffa210;
+ }
+ .Clear_bg:hover{
+   background-color: white;
+   color: #000;
+   cursor: pointer;
+ }
+ .Display_bg > input{
+   background-color: transparent;
+   border: none;
+   outline: none;
+   text-align: center;
+   color: #fff;
+   font-size: 28px;
+   margin-bottom: 10px;
+ }
