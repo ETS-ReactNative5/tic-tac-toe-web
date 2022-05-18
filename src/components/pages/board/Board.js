@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 const Board = (props) => {
 
 // const [board, setBoard] = useState(['_', '_', '_', '_', '_', '_', '_', '_', '_'])
-
+// alert(board)
   const buttonClicked = (index) => {
       var boardCopy = [...props.board]
       if (props.board[index] === '_'){
@@ -17,11 +17,19 @@ const Board = (props) => {
           props.setDisplayMessage("You Won")
           return
         }
+       
         var finalBoard = ComputerTurn(boardCopy)
 
         props.setBoard(finalBoard)
       }
+      
+      if(props.board[index].length == 'XXXXX'){
+        props.setDisplayMessage("Draw")
+      }
+      
+      
   }
+  
   const ComputerTurn = (boardCopy) => {
    var newBoard = winTurn(boardCopy, 'O')
    if (newBoard !== null){
@@ -78,6 +86,7 @@ const Board = (props) => {
     const winWays = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
     for (let i = 0; i < winWays.length; i++) {
       const str = boardCopy[winWays[i][0]] + boardCopy[winWays[i][1]] + boardCopy[winWays[i][2]]
+    
       if (str === 'XXX'){
         var newBoard = boardCopy
         for (let j = 0; j < newBoard.length; j++) {

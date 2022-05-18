@@ -68,9 +68,13 @@ const Clear = (props) => {
                 }
             </button>
            }
-            {/* <button className='Clear_bg' onClick={() => clearBoard()}>
-                CLEAR BOARD
-            </button> */}
+           {
+               props.displayMessage.length > 0 &&
+               <button className='Clear_bg' onClick={() => clearBoard()}>
+               CLEAR BOARD
+           </button>
+           }
+           
         </center>
     )
 }

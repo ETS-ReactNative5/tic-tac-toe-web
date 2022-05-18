@@ -1018,15 +1018,16 @@ hr {
  .Clear_bg{
   display: inline-block;
   width: 160px;
-    color: #ffa210;
-    background-color: #000;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px 25px;
-    border-radius: 6px;
-    text-align: center;
-    transition: .5s;
-    border: 2px solid #ffa210;
+  color: #ffa210;
+  background-color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 8px;
+  border-radius: 6px;
+  text-align: center;
+  transition: .5s;
+  border: 2px solid #ffa210;
+  margin-left: 10px;
  }
  .Clear_bg:hover{
    background-color: white;

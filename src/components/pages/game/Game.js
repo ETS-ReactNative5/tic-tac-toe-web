@@ -13,13 +13,13 @@ function Game() {
 	const [ties, setTies] = useState(0)
 	const [losses, setLosses] = useState(0)
 
-  
+
 
 	return (
 		<div>
-      <Header />
+			<Header />
 			<div>
-				<Board 
+				<Board
 					board={board}
 					setBoard={setBoard}
 					displayMessage={displayMessage}
@@ -28,11 +28,11 @@ function Game() {
 					ties={ties} setTies={setTies}
 					losses={losses} setLosses={setLosses}
 				/>
-		
+
 				<Clear displayMessage={displayMessage}
-        wins={wins}
-        ties={ties}
-        losses={losses}
+					wins={wins}
+					ties={ties}
+					losses={losses}
 					setBoard={setBoard}
 					setDisplayMessage={setDisplayMessage}
 					setWins={setWins}
@@ -40,7 +40,7 @@ function Game() {
 					setTies={setTies}
 				/>
 			</div>
-			
+
 		</div>
 	)
 }
