@@ -959,7 +959,7 @@ hr {
 /* doctor profile page css closed here */
 
 .chart-box > div > svg{
-  height: 270px! important;
+  height: 234px! important;
 }
 
 #loader{
@@ -1042,3 +1042,23 @@ hr {
    font-size: 28px;
    margin-bottom: 10px;
  }
+ .wrp-label-winLoss{
+   text-align: center;
+   padding-top: 5px;
+ }
+ .wrp-label-winLoss > label{
+   color: #000;
+   font-size: 13px;
+ }
+ .won-label{
+   display: inline-block;
+   width: 40px;
+   height: 12px;
+   background-color: green;
+ }
+ .loss-label{
+  display: inline-block;
+  width: 40px;
+  height: 12px;
+  background-color: red;
+}

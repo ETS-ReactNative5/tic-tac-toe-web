@@ -30,29 +30,31 @@ function App(){
 	return(
 		<BrowserRouter>			
 			<Routes>
-				<Route element={<Private />}>
-					<Route path="/game" element={<Game />} />
-					<Route path="/game/start" element={<GameStart />} />
-					<Route path="/dashboard" element={<Dashboard />} />
+					<Route element={<Private />}>
+						<Route path="/game" element={<Game />} />
+						<Route path="/game/start" element={<GameStart />} />
+						<Route path="/dashboard" element={<Dashboard />} />
+						<Route path="/game/provider" element={<GameProvider />} />
+						<Route path="/gameprovider/:patient" element={<DoctorPatientHistory />} />
+						<Route path="/owner/dashboard" element={<Ownerdashboard />} />
+						<Route path="/patient/list/:patientlist" element={<PatientList />} />
+						<Route path="/patient/history/:Patienthistory" element={<PatientHistory />} />
+						<Route path="/doctor/profile" element={<DoctorProfile />} />
+						<Route path="/edit/profile" element={<EditDoctorProfile />} />
+						<Route path="/owner/edit/profile/:ownereditdoctor" element={<OwnerEditDoctorProfile />} />
+						<Route path="/owner/edit/patient/:ownereditpatient" element={<OwnereditPatient />} />
+						<Route path="/owner/edit/patient/history/:ownereditpatienthistory" element={<OwnereditPatientHistory />} />
+						<Route path="/doctor/edit/patient/profile/:doctoreditpatient" element={<DoctorEditPatientList />} />
+						<Route path="/doctor/edit/patient/history/:doctoreditpatienthistory" element={<DoctorEditpatienthistory />} />
+						<Route path="/patient/profile" element={<PatientProfile />} />
+						<Route path="/edit/patient/profile" element={<EditPatientProfile />} />
+						<Route path="/reset/password/:token" element={<ResetPassword />} />
 					</Route>
-					<Route path="/reset/password/:token" element={<ResetPassword />} />
-					<Route path="/login" element={<Login />} />
+					
+					<Route path="/" element={<Login />} />
 					<Route path="/register" element={<Register />} />
-					<Route path="/" element={<Home />} />
-					<Route path="/game/provider" element={<GameProvider />} />
-					<Route path="/gameprovider/:patient" element={<DoctorPatientHistory />} />
-					<Route path="/owner/dashboard" element={<Ownerdashboard />} />
-					<Route path="/patient/list/:patientlist" element={<PatientList />} />
-					<Route path="/patient/history/:Patienthistory" element={<PatientHistory />} />
-					<Route path="/doctor/profile" element={<DoctorProfile />} />
-					<Route path="/edit/profile" element={<EditDoctorProfile />} />
-					<Route path="/owner/edit/profile/:ownereditdoctor" element={<OwnerEditDoctorProfile />} />
-					<Route path="/owner/edit/patient/:ownereditpatient" element={<OwnereditPatient />} />
-					<Route path="/owner/edit/patient/history/:ownereditpatienthistory" element={<OwnereditPatientHistory />} />
-					<Route path="/doctor/edit/patient/profile/:doctoreditpatient" element={<DoctorEditPatientList />} />
-					<Route path="/doctor/edit/patient/history/:doctoreditpatienthistory" element={<DoctorEditpatienthistory />} />
-					<Route path="/patient/profile" element={<PatientProfile />} />
-					<Route path="/edit/patient/profile" element={<EditPatientProfile />} />
+					
+					
 			</Routes>
 	</BrowserRouter>
 	)

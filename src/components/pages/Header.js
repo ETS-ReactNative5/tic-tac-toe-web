@@ -77,13 +77,13 @@ const logOut = ()=>{
                       UserType == 3? <><li><a href="/game/start">Play Game</a></li> <li><a href="/patient/profile">Profile</a></li></>: ""
                     }
                      {
-                       UserType == 2? <><li><a href="/game/provider">Game Provider</a></li> <li><a href="/doctor/profile">Profile</a></li></> : ""
+                       UserType == 2? <><li><a href="/game/provider">Dashboard</a></li> <li><a href="/doctor/profile">Profile</a></li></> : ""
                      }
                   </ul>
                    <div className="connect-wallet">
                      {
-                       auth? <Link to="/login" onClick={logOut} className="connect-wa-btn mrl-btn">Logout</Link> : <div><Link to="/register" className="connect-wa-btn mrl-btn">Register</Link>
-                       <Link to="/login" className="connect-wa-btn mrl-btn">Login</Link></div>
+                       auth? <Link to="/" onClick={logOut} className="connect-wa-btn mrl-btn">Logout</Link> : <div><Link to="/register" className="connect-wa-btn mrl-btn">Register</Link>
+                       <Link to="/" className="connect-wa-btn mrl-btn">Login</Link></div>
                      } 
                     
                    </div>

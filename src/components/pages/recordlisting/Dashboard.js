@@ -234,11 +234,19 @@ const Dashboard = () => {
                     </div>
                     <div className="col-lg-6">
                         <div className="chart-box">
-
+                                <div className="wrp-label-winLoss"><span className="loss-label"></span> <label>Loss</label> <span className="won-label"></span> <label>Won</label> </div>
                                 <VictoryPie
                                 data={myData}
-                                colorScale={["blue", "red"]}
+                                colorScale={["green", "red"]}
                                 radius={100}
+                                padding={10}
+                                // width={400} height={400}
+                                style={{
+                                    
+                                    labels: {
+                                      fontSize: 25
+                                    }
+                                  }}
                             /> 
                            
                         </div>

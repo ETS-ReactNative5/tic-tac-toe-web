@@ -95,7 +95,7 @@ const Register = () => {
                                 <div id="loader"></div>
                             }
                         </button>
-                        <p className="login-p">You have account <a href="/login">please login</a></p>
+                        <p className="login-p">You have account <a href="/">please login</a></p>
                     </div>
                 </div>
             </div>
