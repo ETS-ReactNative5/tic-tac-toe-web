@@ -124,7 +124,7 @@ const Login = ()=>{
                             }
                     </button>
                 </div>
-                <p className="login-p">You don't have account <a href="/register">please register</a></p>
+                <p className="login-p">You don't have account <a href="/register">please Register as doctor here</a></p>
             </div>
         </div>
 
